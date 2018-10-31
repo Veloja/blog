@@ -1,57 +1,55 @@
-const blogs = [
-    {
-        id: 1,
-        title: 'Title 1',
-        text: 'Text 1',
-        comment: 'bla bla'
-    },
-    {
-        id: 2,
-        title: 'Title 2',
-        text: 'Text 2',
-        comment: 'bla bla 2'
-    }, 
-    {
-        id: 3,
-        title: 'Title 3',
-        text: 'Text 3',
-        comment: 'bla bla 3'
-    }
-]
+let blogs = []
 
+const addBlogs = document.querySelector('.add-blogs')
+const blogList = document.querySelector('.blog-list')
 
-function addBlog() {
-    const addBlog = document.querySelector('.add-blog');
+function addBlog(e) {
+	e.preventDefault()
 
-    addBlog.addEventListener('click', function() {
-        let inputs = document.querySelectorAll('input');
-        let inputsArr = Array.from(inputs)
-        console.log(inputsArr)
-        for(var i = 0; i < inputsArr.length; i++) {
-            inputsArr[i].classList.add('show');
-        }
-    });
-}
+	const title = document.querySelector('.blog-title').value
+	const text = document.querySelector('.blog-text').value
 
-function showBlogs() {
+	const blog = {
+		title,
+		text,
+		id: Date.now()
+	}
 
-    for(var i = 0; i < blogs.length; i++) { 
+	blogs.push(blog)
 
-        let heading = document.createElement('h4');
-        let text = document.createElement('p');
-        let comment = document.createElement('p');
-    
-        let blogTitle = blogs[i].title;
-        let blogText = blogs[i].text;
+	addBlogs.reset()
 
-        heading.innerHTML = blogTitle;
-        document.body.appendChild(heading)
-
-        text.innerHTML = blogText;
-        document.body.appendChild(text)
-    }
+	populateBlog(blogs, blogList)
 
 }
 
-showBlogs()
-addBlog()
+
+function populateBlog(blogs, blogsList) {
+
+	blogList.innerHTML = blogs.map(blog => {
+		return `
+			<div class="blog">
+				<h1>${blog.title}</h1>
+				<h4>${blog.text}</h4>
+				<button class="edit-blog">Edit</button>
+			</div>
+		`
+	}).join('')
+
+	const editBlog = document.querySelectorAll('.edit-blog')
+	const editBlogs = Array.from(editBlog)
+
+	editBlogs &&
+	editBlogs.map(blog => {
+		blog.addEventListener('click', handleBlogEdit)
+	})
+
+}
+
+// Handle edit blog
+
+function handleBlogEdit() {
+	console.log('cao cao');
+}
+
+addBlogs.addEventListener('submit', addBlog)
