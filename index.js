@@ -26,12 +26,12 @@ function addBlog(e) {
 
 function populateBlog(blogs, blogsList) {
 
-	blogList.innerHTML = blogs.map(blog => {
+	blogList.innerHTML = blogs.map((blog, id) => {
 		return `
-			<div class="blog">
+			<div class="blog" data-id=${id}>
 				<h1>${blog.title}</h1>
 				<h4>${blog.text}</h4>
-				<button class="edit-blog">Edit</button>
+				<button class="edit-blog" data-btnid=${id} >Edit</button>
 			</div>
 		`
 	}).join('')
@@ -39,7 +39,6 @@ function populateBlog(blogs, blogsList) {
 	const editBlog = document.querySelectorAll('.edit-blog')
 	const editBlogs = Array.from(editBlog)
 
-	editBlogs &&
 	editBlogs.map(blog => {
 		blog.addEventListener('click', handleBlogEdit)
 	})
@@ -49,7 +48,7 @@ function populateBlog(blogs, blogsList) {
 // Handle edit blog
 
 function handleBlogEdit() {
-	console.log('cao cao');
+	console.log('cao cao', this);
 }
 
 addBlogs.addEventListener('submit', addBlog)
