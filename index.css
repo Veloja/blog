@@ -5,3 +5,17 @@
 input.show {
     display: block;
 } */
+
+.submit {
+    display: inline-block;
+}
+.submit.hide-submit {
+    display: none;
+}
+
+.save {
+    display: none;
+}
+.save.show-save {
+    display: inline-block;
+}
