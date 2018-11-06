@@ -28,16 +28,24 @@ function addBlog(e) {
 }
 
 function populateBlog(blogs) {
+	// ovo je kad importujem html
+	var content = document.querySelector('link[rel="import"]').import;
+	let element = content.querySelector('#blog-post')
+	console.log(element)
 
 	blogList.innerHTML = blogs.map((blog, id) => {
 		return `
 			<div class="blog" data-id=${id}>
 				<h1 class="title">${blog.title}</h1>
 				<h4 class="text">${blog.text}</h4>
+				<div class="comment"></div>
 				<button class="edit-blog" data-btnid=${id} >Edit</button>
 			</div>
 		`
 	}).join('')
+
+	let comment = document.querySelector('.comment')
+	comment.innerHTML = element.innerHTML
 
 	const editBlog = document.querySelectorAll('.edit-blog')
 	const editBlogs = [...editBlog]
