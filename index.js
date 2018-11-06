@@ -27,7 +27,7 @@ function addBlog(e) {
 	populateBlog(blogs, blogList)
 }
 
-function populateBlog(blogs, blogsList) {
+function populateBlog(blogs) {
 
 	blogList.innerHTML = blogs.map((blog, id) => {
 		return `
@@ -91,6 +91,12 @@ function findBlogById() {
 			blogIdArr[i].innerHTML = textChanged
 		}
 	}
+	// show submit; hide save
+	submit.classList.remove('hide-submit');
+	save.classList.remove('show-save');
+
+	addBlogs.reset()
+
 }
 
 addBlogs.addEventListener('submit', addBlog)
