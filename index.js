@@ -1,3 +1,9 @@
+// import { renderComment }  from './comment'
+// const myModule = require('./comment')
+
+import { helper } from './comment/index.js';
+console.log(helper());
+
 let blogs = []
 
 const addBlogs = document.querySelector('.add-blogs')
@@ -10,6 +16,10 @@ let btnId = '';
 let title = '';
 let text = '';
 let btnItself = '';
+
+var content = document.querySelector('link[rel="import"]');
+let importovano = content.import
+// console.log(renderComment())
 
 function addBlog(e) {
 	e.preventDefault()
@@ -29,7 +39,6 @@ function addBlog(e) {
 
 function populateBlog(blogs) {
 	// ovo je kad importujem html
-	var content = document.querySelector('link[rel="import"]').import;
 	let element = content.querySelector('#blog-post')
 	console.log(element)
 
@@ -45,7 +54,7 @@ function populateBlog(blogs) {
 	}).join('')
 
 	let comment = document.querySelector('.comment')
-	comment.innerHTML = element.innerHTML
+	comment.innerHTML = content.innerHTML
 
 	const editBlog = document.querySelectorAll('.edit-blog')
 	const editBlogs = [...editBlog]
